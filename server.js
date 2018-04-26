@@ -36,10 +36,10 @@ parser.on('data', function(data) { // on data from the arduino
     io.emit('reset');
   }
   if(data=='width') {
-    io.emit('random');
+    io.emit('width');
   }
   if(data=='color') {
-    io.emit('randomc');
+    io.emit('color');
   }
   else{ // any other data we try to forward by spliting it
     var transmitData = [data.split(',')[0],data.split(',')[1]];
