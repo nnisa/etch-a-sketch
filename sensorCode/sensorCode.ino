@@ -3,7 +3,7 @@
 #define PINY A1 // y axis
 #define BUTTON 6 // reset pin
 #define RANDOM 2 // random width pin
-#define RANDOMC 4 // random color pin
+#define RANDOMC 12 // random color pin
 
 unsigned long targetTime=0;
 const unsigned long interval=500; 
