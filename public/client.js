@@ -1,9 +1,22 @@
-var COLOUR =  '#505050';  // This is the drawing color
+var COLOR =  '#505050';  // This is the drawing color
 var radius = 3;           // Constant radio for the line
 var socket = io();        // websocket to the server
 var previousPosition=[0,0]; // previous position to draw a line from
 var ctx = Sketch.create(); //Creating the drawing context
 var firstMessage=true;    // What the first message, to start on the first value
+
+
+//////////////////////////////////////////////////////////////////////////////////
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6 i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+//////////////////////////////////////////////////////////////////////////////////
+
 
     ctx.container = document.getElementById( 'container' ); //reference drawing canvas
     ctx.autoclear= false; // making sure it stays
@@ -15,16 +28,28 @@ var firstMessage=true;    // What the first message, to start on the first value
       firstMessage=true;
       ctx.clear();
     });
+//////////////////////////////////////////////////////////////////////////////////
 
-    socket.on('new-pos', function(newPosition) { // handling new sensor values
+    socket.on('width', function() {
+        radius = Math.floor(Math.random()*10+1);
+    });
+//////////////////////////////////////////////////////////////////////////////////
 
-      //TODO: Map the incoming 10-bit numbers to the height and width of the screen.
-      // See https://github.com/soulwire/sketch.js/wiki/API for sketch references
+//////////////////////////////////////////////////////////////////////////////////
 
+    socket.on('color', function() {
+        COLOR = getRandomColor();
+    });
+//////////////////////////////////////////////////////////////////////////////////
+
+
+socket.on('new-pos', function(newPosition) { // handling new sensor values
+  if (newPosition[0] <= ctx.width && newPosition[1] <= ctx.height) {
       if(firstMessage){ // if its the first message store that value as previous
         firstMessage=false;
         previousPosition=newPosition;
-      }else{ // any other message we use to draw.
+      }
+      else{ // any other message we use to draw.
         ctx.lineCap = 'round';
         ctx.lineJoin = 'round';
         ctx.fillStyle = ctx.strokeStyle = COLOUR;
@@ -34,5 +59,7 @@ var firstMessage=true;    // What the first message, to start on the first value
         ctx.lineTo( newPosition[0],  newPosition[1]); // to
         ctx.stroke(); // and only draw a stroke
         previousPosition=newPosition; // update to the new position.
-       }
-    });
+      }
+   }
+});
+
