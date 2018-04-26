@@ -1,8 +1,8 @@
 
 #define PINX A0 // x axis
 #define PINY A1 // y axis
-#define BUTTON 6 // reset pin
-#define RANDOM 2 // random width pin
+#define BUTTON 2 // reset pin
+#define RANDOM 6 // random width pin
 #define RANDOMC 12 // random color pin
 
 unsigned long targetTime=0;
