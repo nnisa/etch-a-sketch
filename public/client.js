@@ -33,6 +33,7 @@ function getRandomColor() {
 
     socket.on('width', function() {
         radius = Math.floor(Math.random()*10+1);
+        console.log( 'width clicked' )
     });
 //////////////////////////////////////////////////////////////////////////////////
 
@@ -40,12 +41,14 @@ function getRandomColor() {
 
     socket.on('color', function() {
         COLOR = getRandomColor();
+        console.log( 'color clicked' )
     });
 //////////////////////////////////////////////////////////////////////////////////
 
 
 socket.on('new-pos', function(newPosition) { // handling new sensor values
   if (newPosition[0] <= ctx.width && newPosition[1] <= ctx.height) {
+      console.log( 'new position' )
       if(firstMessage){ // if its the first message store that value as previous
         firstMessage=false;
         previousPosition=newPosition;
