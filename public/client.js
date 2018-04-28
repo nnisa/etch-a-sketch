@@ -7,6 +7,7 @@ var firstMessage=true;    // What the first message, to start on the first value
 
 
 //////////////////////////////////////////////////////////////////////////////////
+//https://stackoverflow.com/questions/1484506/random-color-generator
 function getRandomColor() {
     var letters = '0123456789ABCDEF';
     var color = '#';
