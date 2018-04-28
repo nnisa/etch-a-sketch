@@ -9,8 +9,8 @@ unsigned long targetTime=0;
 const unsigned long interval=500; 
 
 void setup(){
-//  Serial.begin(115200);
-  Serial.begin(9600);
+  Serial.begin(115200);
+//   Serial.begin(9600);
   pinMode(PINX, INPUT);
   pinMode(PINY, INPUT);
   pinMode(BUTTON, INPUT);
