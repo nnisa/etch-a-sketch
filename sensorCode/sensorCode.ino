@@ -1,27 +1,32 @@
-
-#define X A0 // x axis
-#define Y A1 // y axis
+// Arduino pin numbers
+const int SW_pin = 3; // digital pin connected to switch output
 #define BUTTON 12 // reset pin
 #define WIDTH 7 // random width pin
 #define COLOR 2 // random color pin
+#define X A0 // x axis
+#define Y A1 // y axis
 
 unsigned long targetTime=0;
 const unsigned long interval=500; 
 
-void setup(){
-//   Serial.begin(115200);
+
+void setup() {
+  pinMode(SW_pin, INPUT);
+  digitalWrite(SW_pin, HIGH);
   Serial.begin(9600);
-  pinMode(X, INPUT);
-  pinMode(Y, INPUT);
   pinMode(BUTTON, INPUT);
   pinMode(WIDTH, INPUT);
   pinMode(COLOR, INPUT);
 }
 
-void loop(){
-  if(digitalRead(BUTTON)) {
+
+void loop(){  
+  if(digitalRead(SW_pin) == LOW) {
     Serial.println("rst");
   }
+//  if(digitalRead(BUTTON)) {
+//    Serial.println("rst");
+//  }
   if(digitalRead(WIDTH)) {
     Serial.println("width");
   }
