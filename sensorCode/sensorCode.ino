@@ -1,6 +1,6 @@
 
-#define PINX A0 // x axis
-#define PINY A1 // y axis
+#define X A0 // x axis
+#define Y A1 // y axis
 #define BUTTON 12 // reset pin
 #define WIDTH 7 // random width pin
 #define COLOR 2 // random color pin
@@ -11,8 +11,8 @@ const unsigned long interval=500;
 void setup(){
 //   Serial.begin(115200);
   Serial.begin(9600);
-  pinMode(PINX, INPUT);
-  pinMode(PINY, INPUT);
+  pinMode(X, INPUT);
+  pinMode(Y, INPUT);
   pinMode(BUTTON, INPUT);
   pinMode(WIDTH, INPUT);
   pinMode(COLOR, INPUT);
@@ -30,7 +30,7 @@ void loop(){
   }
   if(millis()>=targetTime){
     targetTime= millis()+interval;
-    Serial.println(String(analogRead(PINX))+","+String(analogRead(PINY)));
+    Serial.println(String(analogRead(X))+","+String(analogRead(Y)));
   }
 }
 
